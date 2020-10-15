@@ -18,7 +18,7 @@ body {
 
 .main-box {
     width: 200px;
-    height: 250px;
+    height: 300px;
     background: #131313;
     position: absolute;
     margin: auto;
@@ -28,13 +28,28 @@ body {
     top: 0;
     padding: 30px;
     border-radius: 10px;
+    animation: mainBoxAnimation 1.2s linear infinite;
+}
+
+@keyframes mainBoxAnimation {
+    0% {
+        box-shadow: -4px 2px 2px red;
+    }
+    100% {
+        box-shadow: 4px 2px 2px blue;
+    }
 }
 
 .main-box img {
     width: 100px;
     display: block;
     margin: 0 auto;
-    margin-bottom: 20px;
+}
+
+.main-box h1 {
+    text-align: center;
+    color: #fff;
+    margin: 20px auto;
 }
 
 .main-box a {
