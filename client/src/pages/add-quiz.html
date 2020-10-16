@@ -1,0 +1,46 @@
+<div class="main-box w-300 h-auto" id="first">
+    <img src="../images/logo.png" alt="logo">
+    <h1>اضافه کردن سوال آیین نامه</h1>
+    <form action="/" method="post">
+        <label for="picture">:عکس سوال</label>
+        <input type="file" name="picture" id="picture" class="custom-file-input">
+
+        <label for="question">:سوال</label>
+        <input type="text" name="question" id="question">
+
+        <button class="submit-questions" id="submit-questions" disabled>بعدی</button>
+    </form>
+</div>
+
+<div class="main-box w-300 h-auto none" id="second">
+    <img src="../images/logo.png" alt="logo">
+    <h1>اضافه کردن جواب آیین نامه</h1>
+    <form action="/" method="post">
+
+        <label for="answer">:جواب</label>
+        <input type="text" name="answer" id="answer">
+
+
+        <label for="is-correct" class="correct-label">این جواب درست است؟</label>
+        <input type="checkbox" name="is-correct" id="is-correct">
+        <button class="add-to-answers" id="add-to-answers" type="button">اضافه کردن</button>
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>عنوان جواب</th>
+                    <th>جواب درست</th>
+                    <th>مدیریت</th>
+                </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>f
+
+
+        <button class="submit-questions" id="submit-quiz-question" type="button">ثبت سوال</button>
+        <br>
+        <br>
+        <button class="back-to-questions" id="back-to-questions ">برگشت</button>
+    </form>
+</div>
