@@ -93,7 +93,7 @@ const removeItem = (id) => {
     document.getElementById("answer_item_" + id).remove();
 };
 
-export const createQuiz = (e) => {
+export const createQuiz = async (e) => {
     e.preventDefault();
     if (answers.length < 4) {
         alert("باید 4 جواب انتخاب کنید")
@@ -101,9 +101,24 @@ export const createQuiz = (e) => {
         const data = new FormData();
         const question = document.getElementById("question").value.trim();
         const picture = document.getElementById("picture").files[0];
-        data.append("question",question);
-        data.append("picture",picture);
-        data.append("answers",answers);
-        
+        data.append("question", question);
+        data.append("picture", picture);
+        data.append("answers", JSON.stringify(answers));
+        await fetch("http://localhost:5000/api/v1/quiz/add-quiz", {
+            method: "POST",
+            body: data
+        });
+        alert("سوال با موفقیت افزوده  شد");
+        location.href = "/";
+    }
+};
+
+export const checkPictureIsValid = (e) => {
+    const file = e.target.files[0];
+    const format = file.name.split(".")[1].toLowerCase();
+    const SUPPORTED_FORMATS = ["jpg", "png", "jpeg", "gif"];
+    if (!SUPPORTED_FORMATS.includes(format)) {
+        alert("لطفا یک عکس انتخاب کنید");
+        e.target.value = null;
     }
 };
