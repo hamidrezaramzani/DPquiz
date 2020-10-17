@@ -1,4 +1,15 @@
 let answers = [];
+let questions = [];
+let index = 0;
+let correctAnswers = 0;
+let failedAnswers = 0;
+let currentQuestion = {};
+
+if (localStorage.getItem("questions")) {
+    questions = JSON.parse(localStorage.getItem("questions"));
+    currentQuestion = questions[0];
+}
+
 
 export const questionWriting = (e) => {
     const value = e.target.value.trim();
@@ -121,4 +132,57 @@ export const checkPictureIsValid = (e) => {
         alert("لطفا یک عکس انتخاب کنید");
         e.target.value = null;
     }
+};
+
+
+
+export const setCurrectQuestion = (question) => {
+    const ids = ["first", "second", "third", "fourth"];
+    document.getElementById("question-lable").innerText = question.question;
+    const answers = question.answers;
+    ids.forEach((item, index) => {
+        if (question.picture) {
+            document.getElementById("picture").style.display = "block";
+            document.getElementById("picture").src = 'http://localhost:5000/public/pictures/' + question.picture
+
+        }
+        else
+            document.getElementById("picture").style.display = "none";
+
+
+        document.getElementById(item + "-" + "lable").innerText = answers[index].title;
+        document.getElementById(item).value = answers[index].id;
+    });
+
+};
+
+
+export const nextQuestion = () => {
+    const checkedInput = document.querySelector("input[type=radio]:checked")
+
+    if (checkedInput) {
+        const value = checkedInput.value;
+        const answers = currentQuestion.answers;
+        for (const key in answers) {
+            if (answers[key].isCorrect && value == answers[key].id)
+                correctAnswers += 1;
+        }
+        let questionLength = questions.length;
+        if (index == questionLength - 1) {
+            alert(`
+                تمام شد
+                جواب های درست:${correctAnswers}
+                جواب های اشتباه: ${questionLength - correctAnswers}
+            `);
+            location.href = "/";
+        }
+        index += 1;
+        currentQuestion = questions[index];
+        checkedInput.checked = false;
+        setCurrectQuestion(currentQuestion);
+
+    } else {
+        alert("گزینه خود را انتخاب کنید")
+    }
+
 };
