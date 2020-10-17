@@ -2,7 +2,6 @@ let answers = [];
 let questions = [];
 let index = 0;
 let correctAnswers = 0;
-let failedAnswers = 0;
 let currentQuestion = {};
 
 if (localStorage.getItem("questions")) {
@@ -16,7 +15,7 @@ export const questionWriting = (e) => {
     if (!value) {
         document.getElementById("submit-questions").setAttribute("disabled", "true");
     } else {
-        document.getElementById("submit-questions").removeAttribute("disabled")
+        document.getElementById("submit-questions").removeAttribute("disabled");
     }
 
 };
@@ -31,7 +30,7 @@ export const backToQuestionForm = (e) => {
     e.preventDefault();
     document.getElementById("second").classList.add("none");
     document.getElementById("first").classList.remove("none");
-}
+};
 
 export const addAnswer = () => {
     const title = document.getElementById("answer").value.trim();
@@ -75,7 +74,7 @@ const renderItems = () => {
     let tr;
     for (let index = 0; index < answers.length; index++) {
         const element = answers[index];
-        tr = document.createElement("tr")
+        tr = document.createElement("tr");
         tr.id = "answer_item_" + element.id;
         const id = document.createElement("td");
         const titleTd = document.createElement("td");
@@ -107,7 +106,7 @@ const removeItem = (id) => {
 export const createQuiz = async (e) => {
     e.preventDefault();
     if (answers.length < 4) {
-        alert("باید 4 جواب انتخاب کنید")
+        alert("باید 4 جواب انتخاب کنید");
     } else {
         const data = new FormData();
         const question = document.getElementById("question").value.trim();
@@ -143,7 +142,7 @@ export const setCurrectQuestion = (question) => {
     ids.forEach((item, index) => {
         if (question.picture) {
             document.getElementById("picture").style.display = "block";
-            document.getElementById("picture").src = 'http://localhost:5000/public/pictures/' + question.picture
+            document.getElementById("picture").src = 'http://localhost:5000/public/pictures/' + question.picture;
 
         }
         else
@@ -158,7 +157,7 @@ export const setCurrectQuestion = (question) => {
 
 
 export const nextQuestion = () => {
-    const checkedInput = document.querySelector("input[type=radio]:checked")
+    const checkedInput = document.querySelector("input[type=radio]:checked");
 
     if (checkedInput) {
         const value = checkedInput.value;
@@ -182,7 +181,7 @@ export const nextQuestion = () => {
         setCurrectQuestion(currentQuestion);
 
     } else {
-        alert("گزینه خود را انتخاب کنید")
+        alert("گزینه خود را انتخاب کنید");
     }
 
 };

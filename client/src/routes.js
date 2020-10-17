@@ -41,9 +41,5 @@ routes.add("/list", async () => {
 });
 
 
-function shuffle(array) {
-    return array.sort(() => Math.random() - 0.5);
-}
-
 
 routes.listen();
